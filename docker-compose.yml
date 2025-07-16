@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # Frontend application
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    # Uncomment if you have a backend service
+    # depends_on:
+    #   - backend
+
+  # Optional: Backend API service (uncomment if you have a backend)
+  # backend:
+  #   build:
+  #     context: ../backend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "5000:5000"
+  #   environment:
+  #     - NODE_ENV=production
+  #     - MONGODB_URI=mongodb://mongo:27017/products
+  #   depends_on:
+  #     - mongo
+  #   restart: unless-stopped
+
+  # Optional: MongoDB service (uncomment if you need a local MongoDB)
+  # mongo:
+  #   image: mongo:latest
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=products
+  #   volumes:
+  #     - mongodb_data:/data/db
+  #   restart: unless-stopped
+
+# Optional: MongoDB data volume (uncomment if using MongoDB)
+# volumes:
+#   mongodb_data: 
