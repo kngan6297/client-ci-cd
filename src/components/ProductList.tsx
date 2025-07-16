@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Product } from "../types/Product";
+import type { Product } from "../types/Product";
 import ProductCard from "./ProductCard";
 
 interface ProductListProps {
@@ -65,20 +65,6 @@ const ProductList: React.FC<ProductListProps> = ({
 
     return filtered;
   }, [products, searchTerm, selectedCategory, sortBy, sortOrder]);
-
-  const handleSort = (field: "name" | "price" | "stock" | "createdAt") => {
-    if (sortBy === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortBy(field);
-      setSortOrder("asc");
-    }
-  };
-
-  const getSortIcon = (field: "name" | "price" | "stock" | "createdAt") => {
-    if (sortBy !== field) return null;
-    return sortOrder === "asc" ? "↑" : "↓";
-  };
 
   return (
     <div className="space-y-6">
